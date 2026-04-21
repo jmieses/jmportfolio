@@ -2,7 +2,6 @@
 layout: post
 title: "Bluetooth LED Control with Arduino Uno and HC-05"
 date: 2026-04-20
-categories: [embedded-systems, arduino, bluetooth]
 tags: [arduino, hc-05, uart, bluetooth, embedded, debugging, electronics]
 excerpt: "A simple Bluetooth LED control project that became a practical lesson in UART communication, AT-mode configuration, hardware debugging, and embedded systems integration."
 ---
