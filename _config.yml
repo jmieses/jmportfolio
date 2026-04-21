@@ -110,7 +110,7 @@ author:
   name             : "Johnny Mieses"
   avatar           : "/assets/images/biophoto2.JPG" #"https://via.placeholder.com/150" #"/assets/images/biophoto.jpg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : "Portfolio."
-  location         : "Rochester Hills, Michigan"
+  location         : "Vernon, Connecticut"
   email            :
   links:
     - label: "Email"

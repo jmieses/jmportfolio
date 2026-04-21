@@ -53,8 +53,6 @@ Below is the schematic used for the project.
 
 ![HC-05 LED Project Schematic](/assets/images/hc-05-schematic.png)
 
-> Replace the image path above with the actual path to your uploaded schematic inside your GitHub Pages repository.
-
 ## What I built
 
 The Arduino listens for Bluetooth input from the HC-05 module. When it receives a valid command, it updates the LED state accordingly. This made it possible to test end-to-end communication from a Bluetooth terminal to a physical output.
