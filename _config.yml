@@ -198,6 +198,7 @@ markdown_ext: "markdown,mkdown,mkdn,mkd,md"
 markdown: kramdown
 highlighter: rouge
 lsi: false
+future: true
 excerpt_separator: "\n\n"
 incremental: false
 

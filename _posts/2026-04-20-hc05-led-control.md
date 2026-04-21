@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Bluetooth LED Control with Arduino Uno and HC-05"
 date: 2026-04-20
 tags: [arduino, hc-05, uart, bluetooth, embedded, debugging, electronics]
@@ -52,7 +51,7 @@ For this project, I wanted to focus on learning the fundamentals of Bluetooth co
 
 Below is the schematic used for the project.
 
-![HC-05 LED Project Schematic](/assets/images/hc05-led-schematic.png)
+![HC-05 LED Project Schematic](/assets/images/hc-05-schematic.png)
 
 > Replace the image path above with the actual path to your uploaded schematic inside your GitHub Pages repository.
 
