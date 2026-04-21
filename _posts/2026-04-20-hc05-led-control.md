@@ -53,6 +53,75 @@ Below is the schematic used for the project.
 
 ![HC-05 LED Project Schematic](/assets/images/hc-05-schematic.png)
 
+## System architecture
+
+At a functional level, the system has three layers:
+
+### 1. Wireless transport layer
+
+A host device sends a character over Bluetooth to the HC-05.
+
+### 2. UART interface layer
+
+The HC-05 converts the received Bluetooth data into UART serial data for the Arduino.
+
+### 3. Application layer
+
+The Arduino firmware reads the incoming character and maps it to a hardware action.
+
+This layering was important because it gave me a structured way to debug the system. If the LED did not respond correctly, the issue could be isolated to one of these layers rather than treated as a single opaque failure.
+
+## Software design
+
+The firmware was intentionally kept small so the communication behavior remained easy to inspect. The core logic was:
+
+1. initialize serial interfaces
+2. wait for incoming data from the HC-05
+3. read one character
+4. compare the received value against known commands
+5. update the LED output accordingly
+
+The project also used a separate serial path for debugging so I could inspect command flow without interfering with the Bluetooth test conditions.
+
+## Bluetooth LED control code
+
+After validating the HC-05 configuration and serial path, I moved to a simple application-level test: controlling an LED over Bluetooth. The goal of this phase was to confirm that the full communication path was working in normal data mode:
+
+**host device → Bluetooth link → HC-05 → Arduino UART parser → LED output**
+
+I used the following sketch:
+
+```cpp
+#include <SoftwareSerial.h>
+
+SoftwareSerial BT(10, 11); // RX, TX
+const int LED = 8;
+
+void setup() {
+  Serial.begin(9600);
+  BT.begin(9600);
+  pinMode(LED, OUTPUT);
+  Serial.println("Bluetooth LED test ready");
+}
+
+void loop() {
+  if (BT.available()) {
+    char c = BT.read();
+
+    Serial.print("Received: ");
+    Serial.println(c);
+
+    if (c == '1') {
+      digitalWrite(LED, HIGH);
+      Serial.println("LED ON");
+    } 
+    else if (c == '0') {
+      digitalWrite(LED, LOW);
+      Serial.println("LED OFF");
+    }
+  }
+}
+
 ## What I built
 
 The Arduino listens for Bluetooth input from the HC-05 module. When it receives a valid command, it updates the LED state accordingly. This made it possible to test end-to-end communication from a Bluetooth terminal to a physical output.
