@@ -1,4 +1,3 @@
-````md
 ---
 layout: post
 title: "Bidirectional Bluetooth Command Path Validation with HC-05 and Elegoo Uno R3"
