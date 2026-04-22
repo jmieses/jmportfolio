@@ -2,8 +2,19 @@
 layout: post
 title: "Bidirectional Bluetooth Command Path Validation with HC-05 and Elegoo Uno R3"
 date: 2026-04-21
-categories: [embedded-systems, communications, arduino]
-tags: [hc-05, bluetooth, uart, arduino, ubuntu, python, debugging, telemetry]
+categories:
+  - embedded-systems
+  - communications
+  - arduino
+tags:
+  - hc-05
+  - bluetooth
+  - uart
+  - arduino
+  - ubuntu
+  - python
+  - debugging
+  - telemetry
 excerpt: "An engineering-focused build log on validating a bidirectional Bluetooth command path using an HC-05 and an Elegoo Uno R3, including serial-interface debugging, Linux host integration, and the hardware root cause that blocked reverse telemetry."
 ---
 
