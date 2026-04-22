@@ -115,7 +115,7 @@ So instead of sharing the hardware UART, I used:
 
 ```cpp
 SoftwareSerial BT(10, 11); // RX, TX
-````
+```
 
 That let me keep the Bluetooth link separate from USB serial debugging and gave me a much cleaner test setup.
 
@@ -478,6 +478,3 @@ The most important takeaway was not that Bluetooth worked. It was that **one-way
 
 * Arduino, *SoftwareSerial example / adding more serial ports*
   [https://docs.arduino.cc/tutorials/communication/SoftwareSerialExample](https://docs.arduino.cc/tutorials/communication/SoftwareSerialExample)
-
-```
-```
