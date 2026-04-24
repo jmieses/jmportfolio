@@ -351,7 +351,6 @@ The wall condition used a simple wood wall in my house.
 
 This is the final Uno firmware used for the packet-echo benchmark.
 
-<details>
 <summary><strong>Uno benchmark firmware</strong></summary>
 
 ```cpp
@@ -430,7 +429,6 @@ void loop() {
   BT.write(calcChecksum);
 }
 ```
-</details>
 
 ### Why the firmware is minimal
 
@@ -442,7 +440,6 @@ I intentionally removed extra debug printing and unnecessary behavior during tim
 
 This is the host-side benchmark script that created the raw and summary CSV files.
 
-<details>
 <summary><strong>Ubuntu Python benchmark script</strong></summary>
 
 ```python
@@ -652,7 +649,6 @@ def main():
 if __name__ == "__main__":
     main()
 ```
-</details>
 
 ---
 
