@@ -1,8 +1,6 @@
 ---
-layout: post
 title: "HC-05 QoS Benchmarking with an Elegoo Uno R3: From Bidirectional Validation to Distance and Wall Experiments"
 date: 2026-04-24
-categories: [embedded-systems, communications, arduino]
 tags: [hc-05, bluetooth, uart, qos, telemetry, arduino, ubuntu, python, benchmarking]
 excerpt: "A full engineering write-up of how I validated and benchmarked an HC-05 Bluetooth link with an Elegoo Uno R3, including Ubuntu setup, debugging failures, final firmware and scripts, and a discussion of latency, jitter, goodput, and reliability across 1 m, 3 m, 5 m, and wood-wall conditions."
 ---
