@@ -1,10 +1,13 @@
 ---
 title: "HC-05 QoS Benchmarking with an Elegoo Uno R3: Theory, Implementation, and Results"
 date: 2026-04-24
+classes: wide
 excerpt: "A detailed engineering write-up of a Bluetooth QoS benchmark using an HC-05 and an Elegoo Uno R3, including theory, experimental design, firmware, Python tooling, troubleshooting, and a discussion of results across distance and obstacle conditions."
 ---
 
-# HC-05 QoS Benchmarking with an Elegoo Uno R3: Theory, Implementation, and Results
+```yaml
+classes: wide
+```
 
 This post documents the design, implementation, debugging, and analysis of a small but meaningful wireless telemetry benchmark built around an **HC-05 Bluetooth serial module** and an **Elegoo Uno R3**. The purpose of the experiment was not simply to prove that Bluetooth communication worked, but to characterize the behavior of the full end-to-end link under controlled conditions and to produce data that could later support comparisons across distances, obstacles, baud rates, or even different development boards.
 
