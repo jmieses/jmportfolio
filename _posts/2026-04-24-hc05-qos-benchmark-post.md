@@ -153,7 +153,6 @@ Finally, repeat the run under each condition: 1 m, 3 m, 5 m, and wood wall.
 
 The firmware below is the exact packet-echo design used for the benchmark. It keeps the Uno’s job intentionally small: receive one valid packet, verify it, and echo it back unchanged.
 
-<details>
 <summary><strong>Uno benchmark firmware</strong></summary>
 
 ```cpp
@@ -238,15 +237,12 @@ void loop() {
 }
 ```
 
-</details>
-
 The most important design choice here is restraint. The firmware does not print debug text during timed runs, and it does not perform any extra processing once the packet is validated. That keeps the embedded contribution to timing noise as small as possible.
 
 ## Python benchmark script
 
 The benchmark script opened the Bluetooth RFCOMM socket, sent structured packets, waited for the echoed response, validated the packet, measured RTT, and wrote both raw and summary data to CSV.
 
-<details>
 <summary><strong>Ubuntu Python benchmark script</strong></summary>
 
 ```python
@@ -458,15 +454,13 @@ if __name__ == "__main__":
     main()
 ```
 
-</details>
-
 The main engineering choice on the host side was to keep timing on Ubuntu and keep logic on the Uno minimal. That division makes the benchmark easier to reason about and easier to extend later.
 
 ## Plotting script
 
 Once the raw and summary CSV files were generated, they were processed with a reusable plotting script so that new conditions could be added later without rewriting analysis code. The script produced the main summary plots as well as trial-level raw-data plots such as boxplots, histograms, ECDFs, and scatter plots.
 
-<details>
+
 <summary><strong>Python plotting script</strong></summary>
 
 ```python
@@ -737,8 +731,6 @@ def plot_rtt_ecdf_by_payload(raw_df, title_prefix, output_path):
     fig.savefig(output_path, dpi=200, bbox_inches="tight")
     plt.close(fig)
 ```
-
-</details>
 
 In my own working version, this script was extended to generate the exact plots shown later in the post. The most useful outputs were the summary comparison plots and the raw-data distribution plots.
 
