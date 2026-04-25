@@ -1,6 +1,7 @@
 ---
 title: "Bidirectional Bluetooth Command Path Validation with HC-05 and Elegoo Uno R3"
 date: 2026-04-22
+classes: wide
 excerpt: "An engineering-focused build log on validating a bidirectional Bluetooth command path using an HC-05 and an Elegoo Uno R3, including serial-interface debugging, Linux host integration, and the hardware root cause that blocked reverse telemetry."
 ---
 
