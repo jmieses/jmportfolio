@@ -1,6 +1,7 @@
 ---
 title: "UART-Rate Benchmarking of HC-05 Telemetry on an Elegoo Uno R3"
 date: 2026-05-01
+classes: wide
 tags: [hc-05, bluetooth, uart, qos, telemetry, arduino, ubuntu, python, benchmarking]
 excerpt: "A detailed engineering benchmark of an HC-05 Bluetooth telemetry link across multiple UART rates, distances, and a wood-wall condition using an Elegoo Uno R3 and an Ubuntu host."
 ---
