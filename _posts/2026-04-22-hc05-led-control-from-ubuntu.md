@@ -5,8 +5,6 @@ classes: wide
 excerpt: "An engineering-focused build log on validating a bidirectional Bluetooth command path using an HC-05 and an Elegoo Uno R3, including serial-interface debugging, Linux host integration, and the hardware root cause that blocked reverse telemetry."
 ---
 
-# Bidirectional Bluetooth Command Path Validation with HC-05, Elegoo Uno R3, Android, and Ubuntu
-
 This project began as a simple Bluetooth LED demo, but it quickly became a more interesting engineering problem: **how to validate a full bidirectional command-and-telemetry path between a host machine and an embedded target**.
 
 At a high level, the goal was to send commands wirelessly from a host device to an **Elegoo Uno R3** through an **HC-05 Bluetooth module**, drive a visible hardware output, and then verify that the microcontroller could also send data back over the same Bluetooth link. That last part turned out to be the critical difference between a one-way control demo and a real telemetry foundation.

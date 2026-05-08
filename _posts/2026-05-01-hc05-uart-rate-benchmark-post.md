@@ -6,8 +6,6 @@ tags: [hc-05, bluetooth, uart, qos, telemetry, arduino, ubuntu, python, benchmar
 excerpt: "A detailed engineering benchmark of an HC-05 Bluetooth telemetry link across multiple UART rates, distances, and a wood-wall condition using an Elegoo Uno R3 and an Ubuntu host."
 ---
 
-# UART-Rate Benchmarking of HC-05 Telemetry on an Elegoo Uno R3
-
 After establishing a stable bidirectional HC-05 telemetry path and benchmarking it across distance and obstacle conditions at a fixed UART rate, the next engineering question was obvious: **how much of the observed behavior was being set by the UART link between the HC-05 and the Uno?** The Bluetooth session between the Ubuntu host and the HC-05 was only one part of the system. The module still had to relay every packet over UART to the microcontroller and receive the echoed packet back over that same serial path.
 
 That makes UART rate an important experimental variable. A higher UART rate should reduce serialization time and improve effective throughput, but that does not automatically guarantee a better system. On an **Elegoo Uno R3**, the HC-05 was connected through `SoftwareSerial`, which means baud-rate changes are not purely an HC-05 question. They are a **system integration question** involving the Bluetooth module, the software UART implementation on the Uno, the packet size, and the measurement host.
