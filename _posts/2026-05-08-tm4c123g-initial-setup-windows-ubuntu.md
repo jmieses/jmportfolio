@@ -6,15 +6,13 @@ tags: [TM4C123G, Tiva C, Keil, Ubuntu, OpenOCD, Stellaris ICDI, Embedded Systems
 excerpt: "A practical engineering bring-up log for setting up the TM4C123G LaunchPad on Windows and Ubuntu, flashing the Blinky example, and documenting the troubleshooting process before moving to HC-05 Bluetooth experiments."
 ---
 
-# TM4C123G LaunchPad Bring-Up: Windows/Keil and Ubuntu/OpenOCD Setup
-
 After completing the first stage of my HC-05 Bluetooth analysis with the Elegoo/Arduino Uno R3, I wanted to move the experiment to a more capable embedded platform: the Texas Instruments TM4C123G LaunchPad. The motivation was not simply to use a different board. The TM4C123G gives me a stronger platform for future communication experiments because it provides a 32-bit ARM Cortex-M4F microcontroller, multiple hardware UART modules, more direct control over interrupts and timers, and a more realistic embedded development workflow than the Arduino environment.
 
 This post documents the initial setup process for the TM4C123G LaunchPad on both Windows and Ubuntu 20.04. The goal was to establish a clean bring-up path that I can repeat later if I need to rebuild the environment. I also wanted to document the challenges I encountered because the setup did not work immediately. The most important lesson from this process was that embedded setup should be treated as a layered system: first confirm the board is physically detected, then confirm the operating system has the correct drivers or permissions, then confirm the development tool can see the debug interface, then build and flash the simplest possible firmware.
 
 The final result was successful. I was able to flash the TivaWare Blinky example from Windows using Keil µVision and from Ubuntu using OpenOCD. This gives me a stable foundation for the next phase of the project: UART testing and eventually HC-05 Bluetooth latency, throughput, and reliability analysis.
 
-> **Image placeholder:** Add a photo of the TM4C123G LaunchPad connected to the computer through the DEBUG/ICDI micro-USB port. The image should clearly show the USB cable connected to the debug port and the board powered on.
+![TM4C123G LaunchPad connected to Ubuntu machine](/assets/images/tm4c123g-bringup/tm4c123g-connection-image.jpeg)
 
 ## Hardware and software context
 
@@ -32,7 +30,7 @@ Instead, I treated the setup as a sequence of increasingly specific checks. The 
 
 The simplest firmware test was the Blinky example. A blinking onboard LED is not complicated, but that is exactly why it is useful. It proves that the build, flash, reset, and execution pipeline works without requiring external wiring.
 
-> **Diagram placeholder:** Add a simple layered bring-up diagram with the following levels: physical USB connection → OS driver/permission layer → debugger/programmer layer → firmware build → flash verification → application behavior. This would help show why each stage was tested independently.
+![Layered bring-up diagram](/assets/images/tm4c123g-bringup/layered-bringup-diagram.png)
 
 ## Windows setup with Keil µVision
 
@@ -44,7 +42,7 @@ After connecting the board, I checked Windows Device Manager. At first, the boar
 
 To fix this, I installed the Stellaris ICDI drivers from Texas Instruments. These drivers are needed so Windows can properly expose the ICDI debug interface and the virtual serial port. Once the drivers are installed correctly, Device Manager should show entries related to the Stellaris In-Circuit Debug Interface and a Stellaris Virtual Serial Port. The virtual serial port will become useful later for UART debugging, but for the first setup milestone the critical piece was the debug interface used for flashing.
 
-> **Image placeholder:** Add a screenshot of Windows Device Manager after the ICDI drivers are installed. Ideally, it should show the Stellaris ICDI interface without yellow warning icons and the Stellaris Virtual Serial Port under Ports.
+![Windows device managaer showing Stellaris ICDI interface](/assets/images/tm4c123g-bringup/icdi-drivers-image.png)
 
 The next Windows setup step was to make sure Keil had support for the TM4C123GH6PM device. When I first opened the TivaWare Blinky project, Keil reported a device-related issue indicating that it could not find the TM4C123GH6PM. This meant the project referenced a device that Keil did not currently know how to target. The fix was to open Keil’s Pack Installer and install the `Keil::TM4C_DFP` device family pack. This pack provides device support for the TI Tiva C / TM4C family. After installing it, the TM4C123GH6PM became visible in Keil.
 
@@ -56,7 +54,7 @@ The correct fix was to install the Keil Stellaris ICDI add-on. The problem was t
 
 The fix was to locate the real Keil installation path by finding the file location of the Keil µVision shortcut and identifying the active `UV4.exe`. After installing the Stellaris ICDI add-on into that exact Keil_v5 path, the `Stellaris ICDI` option appeared under the Debug tab. This was the key turning point on Windows.
 
-> **Image placeholder:** Add a screenshot of Keil’s Debug tab showing `Stellaris ICDI` selected. This image would be useful because the missing debugger option was one of the main setup challenges.
+![Keil's Debug tab](/assets/images/tm4c123g-bringup/options-for-target-blinky-debug.png)
 
 With the correct device and debugger selected, the Windows flashing path was straightforward. In Keil, I opened the TivaWare Blinky project, confirmed that the target device was `TM4C123GH6PM`, selected `Stellaris ICDI` under the Debug tab, and confirmed that the Utilities tab was set to use the debug driver for flash programming. Then I built the project and downloaded it to the board. The onboard LED blinked successfully.
 
@@ -201,7 +199,7 @@ Info : tm4c123gh6pm.cpu: hardware has 6 breakpoints, 4 watchpoints
 
 This output confirmed that OpenOCD could communicate through the onboard ICDI debugger and correctly identify the TM4C123GH6PM CPU. At this point, Ubuntu was no longer just detecting the USB device; it was communicating with the microcontroller through the debug interface.
 
-> **Image placeholder:** Add a screenshot of the Ubuntu terminal showing the successful OpenOCD connection with `ICDI Firmware version` and `tm4c123gh6pm.cpu` lines visible.
+![Ubuntu terminal showing the successful OpenOCD connection](/assets/images/tm4c123g-bringup/terminal-openocd-connection.png)
 
 ## Flashing the Blinky binary from Ubuntu
 
@@ -222,15 +220,7 @@ The address `0x00000000` is needed because `blinky.bin` is a raw binary file. Un
 
 The flash operation succeeded. The most important part of the output was:
 
-```text
-wrote 2048 bytes from file /home/j4505/Documents/projects/microcontroller-projects/tiva_test/blinky.bin in 0.343634s (5.820 KiB/s)
-** Programming Finished **
-** Verify Started **
-verified 1260 bytes in 0.210908s (5.834 KiB/s)
-** Verified OK **
-** Resetting Target **
-shutdown command invoked
-```
+![Ubuntu terminal showing the successful OpenOCD flashed blinky example](/assets/images/tm4c123g-bringup/terminal-openocd-flashed.png)
 
 The `Verified OK` line is the key confirmation. It means OpenOCD read back the programmed memory and confirmed that it matched the firmware image. At that point, the Ubuntu flashing path was working.
 
