@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(docker compose up*)",
+      "Bash(docker compose build*)",
+      "Bash(docker compose down*)",
+      "Bash(docker compose run --rm build-check*)",
+      "Bash(docker compose logs*)",
+      "Bash(git status)",
+      "Bash(git diff*)",
+      "Bash(git log*)",
+      "Bash(git add*)",
+      "Bash(git commit*)",
+      "Bash(git checkout*)",
+      "Bash(git branch*)",
+      "Bash(git fetch*)",
+      "Bash(git pull*)"
+    ],
+    "deny": [
+      "Bash(git push*)"
+    ]
+  }
+}
