@@ -2,7 +2,7 @@ services:
   jekyll:
     build: .
     ports:
-      - "4000:4000"   # live site
+      - "4001:4000"   # live site (host port 4000 conflicts with nxd.exe Windows service)
       - "35729:35729" # livereload websocket
     volumes:
       - .:/site
